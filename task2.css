@@ -1,0 +1,36 @@
+.mainheading{
+    background-color: lightgray ;
+    height: 100vh;
+}
+
+
+
+
+#t1{
+    font-size: 100px;
+    text-align: center;
+    color: red;
+}
+
+p{
+    font-size: 25px;
+    font-style: italic;
+    color: darkblue;
+}
+button{
+    text-align: center;
+    background-color : yellow;
+    border-color: red;
+    color: blue;
+    padding: 10px;
+    font-size: 25px;
+    transition: all 0.3s ease;
+}
+button:hover{
+  background-color: red;
+  color: black;
+}
+
+.buttoncontainer{
+    text-align: center;
+}

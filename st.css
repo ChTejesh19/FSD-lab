@@ -1,0 +1,11 @@
+/* Class Selector */
+.highlight {
+    font-weight: bold;
+    color: red;
+}
+
+/* ID Selector */
+#special {
+    background-color: yellow;
+    text-align: center;
+}

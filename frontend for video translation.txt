@@ -1,0 +1,57 @@
+import { useState } from "react";
+import axios from "axios";
+
+export default function VideoTranslationApp() {
+  const [videoFile, setVideoFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [translatedVideo, setTranslatedVideo] = useState(null);
+
+  const handleFileChange = (event) => {
+    setVideoFile(event.target.files[0]);
+  };
+
+  const handleUpload = async () => {
+    if (!videoFile) return alert("Please select a video file");
+    
+    setUploading(true);
+    const formData = new FormData();
+    formData.append("video", videoFile);
+    
+    try {
+      const response = await axios.post("http://localhost:5000/upload", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      setTranslatedVideo(response.data.translated_video_url);
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      alert("Upload failed!");
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center p-4">
+      <h1 className="text-2xl font-bold mb-4">Video Translation</h1>
+      <input type="file" accept="video/*" onChange={handleFileChange} className="mb-4" />
+      <button 
+        onClick={handleUpload} 
+        disabled={uploading} 
+        className="px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        {uploading ? "Uploading..." : "Upload & Translate"}
+      </button>
+      {translatedVideo && (
+        <div className="mt-4">
+          <h2 className="text-lg font-semibold">Translated Video</h2>
+          <video controls className="mt-2" width="600">
+            <source src={translatedVideo} type="video/mp4" />
+          </video>
+          <a href={translatedVideo} download className="block mt-2 text-blue-600">
+            Download Translated Video
+          </a>
+        </div>
+      )}
+    </div>
+  );
+}

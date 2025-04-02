@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Date Object Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            border: 3px solid #007BFF;
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            border: 2px solid #007BFF;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            background-color: #d1ecf1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JavaScript Date Object Example</h1>
+        <button onclick="showCurrentDateTime()">Show Current Date & Time</button>
+        <button onclick="showFormattedDate()">Formatted Date</button>
+        <button onclick="showDayOfWeek()">Show Day of Week</button>
+        <button onclick="addDays(7)">Add 7 Days</button>
+        <button onclick="subtractDays(7)">Subtract 7 Days</button>
+        
+        <p id="output">Click a button to see the result.</p>
+    </div>
+
+    <script>
+        let currentDate = new Date();
+
+        function showCurrentDateTime() {
+            document.getElementById("output").innerText = "Current Date & Time: " + currentDate;
+        }
+
+        function showFormattedDate() {
+            let formattedDate = currentDate.toDateString();
+            document.getElementById("output").innerText = "Formatted Date: " + formattedDate;
+        }
+
+        function showDayOfWeek() {
+            let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            let day = days[currentDate.getDay()];
+            document.getElementById("output").innerText = "Today is: " + day;
+        }
+
+        function addDays(days) {
+            let newDate = new Date();
+            newDate.setDate(currentDate.getDate() + days);
+            document.getElementById("output").innerText = "Date after " + days + " days: " + newDate.toDateString();
+        }
+
+        function subtractDays(days) {
+            let newDate = new Date();
+            newDate.setDate(currentDate.getDate() - days);
+            document.getElementById("output").innerText = "Date before " + days + " days: " + newDate.toDateString();
+        }
+    </script>
+</body>
+</html>

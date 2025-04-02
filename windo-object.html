@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window Object Example</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #003366;
+            border-bottom: 3px solid #007BFF;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .container {
+            background: white;
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            border: 3px solid #007BFF;
+            text-align: left;
+        }
+
+        p {
+            font-size: 18px;
+            color: #003366;
+            padding: 8px;
+        }
+
+        /* Button Styling */
+        button {
+            margin: 10px;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Output Section */
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            border: 2px solid #007BFF;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            background-color: #d1ecf1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>JavaScript Window Object Example</h1>
+
+        <!-- Display Window Properties -->
+        <p><strong>Window Width:</strong> <span id="winWidth"></span> px</p>
+        <p><strong>Window Height:</strong> <span id="winHeight"></span> px</p>
+        <p><strong>Current URL:</strong> <span id="currentUrl"></span></p>
+
+        <hr>
+
+        <!-- Buttons to Trigger Window Methods -->
+        <button onclick="showAlert()">Show Alert</button>
+        <button onclick="showConfirm()">Show Confirm</button>
+        <button onclick="showPrompt()">Show Prompt</button>
+        <button onclick="openNewTab()">Open New Tab</button>
+        <button onclick="reloadPage()">Reload Page</button>
+        <button onclick="goBack()">Go Back</button>
+        <button onclick="goForward()">Go Forward</button>
+
+        <p id="output">Click a button to see the action!</p>
+    </div>
+
+    <script>
+        // Display Window Properties
+        document.getElementById("winWidth").innerText = window.innerWidth;
+        document.getElementById("winHeight").innerText = window.innerHeight;
+        document.getElementById("currentUrl").innerText = window.location.href;
+
+        // Window Object Methods
+        function showAlert() {
+            window.alert("This is an alert box!");
+        }
+
+        function showConfirm() {
+            let response = window.confirm("Do you want to continue?");
+            document.getElementById("output").innerText = response ? "You clicked OK!" : "You clicked Cancel!";
+        }
+
+        function showPrompt() {
+            let name = window.prompt("What is your name?");
+            if (name) {
+                document.getElementById("output").innerText = "Hello, " + name + "!";
+            } else {
+                document.getElementById("output").innerText = "You didn't enter a name!";
+            }
+        }
+
+        function openNewTab() {
+            window.open("https://www.google.com", "_blank");
+        }
+
+        function reloadPage() {
+            window.location.reload();
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function goForward() {
+            window.history.forward();
+        }
+    </script>
+
+</body>
+</html>

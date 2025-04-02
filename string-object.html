@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Object Example</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #007BFF;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .container {
+            background: white;
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            border: 3px solid #007BFF;
+            text-align: left;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+            padding: 8px;
+        }
+
+        input {
+            padding: 10px;
+            width: 80%;
+            border: 2px solid #007BFF;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        /* Button Styling */
+        button {
+            margin: 10px;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Output Section */
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            border: 2px solid #007BFF;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            background-color: #d1ecf1;
+            width: 80%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>JavaScript String Object Example</h1>
+
+        <!-- Input Field for String Manipulations -->
+        <label for="strInput"><strong>Enter a String:</strong></label><br>
+        <input type="text" id="strInput" placeholder="Type a string...">
+        
+        <br><br>
+        
+        <!-- Buttons to Perform String Operations -->
+        <button onclick="stringOperation('length')">String Length</button>
+        <button onclick="stringOperation('uppercase')">To Uppercase</button>
+        <button onclick="stringOperation('lowercase')">To Lowercase</button>
+        <button onclick="stringOperation('charAt')">Character at Index 2</button>
+        <button onclick="stringOperation('indexOf')">Index of 'a'</button>
+        <button onclick="stringOperation('replace')">Replace 'hello' with 'Hi'</button>
+        <button onclick="stringOperation('trim')">Trim Spaces</button>
+        <button onclick="stringOperation('slice')">Slice (0,5)</button>
+        <button onclick="stringOperation('concat')">Concatenate " World!"</button>
+
+        <p id="output">Result will be displayed here.</p>
+    </div>
+
+    <script>
+        // Function to Perform String Operations
+        function stringOperation(operation) {
+            let str = document.getElementById("strInput").value;
+            let result = "Invalid Input";
+
+            if (str.trim() !== "") {
+                switch (operation) {
+                    case "length":
+                        result = "String Length: " + str.length;
+                        break;
+                    case "uppercase":
+                        result = "Uppercase: " + str.toUpperCase();
+                        break;
+                    case "lowercase":
+                        result = "Lowercase: " + str.toLowerCase();
+                        break;
+                    case "charAt":
+                        result = "Character at Index 2: " + (str.length >= 3 ? str.charAt(2) : "String too short");
+                        break;
+                    case "indexOf":
+                        result = "Index of 'a': " + str.indexOf('a');
+                        break;
+                    case "replace":
+                        result = "Replace 'hello' with 'Hi': " + str.replace("hello", "Hi");
+                        break;
+                    case "trim":
+                        result = "Trimmed String: " + str.trim();
+                        break;
+                    case "slice":
+                        result = "Sliced String (0,5): " + str.slice(0, 5);
+                        break;
+                    case "concat":
+                        result = "Concatenated: " + str.concat(" World!");
+                        break;
+                }
+            }
+
+            document.getElementById("output").innerText = result;
+        }
+    </script>
+
+</body>
+</html>

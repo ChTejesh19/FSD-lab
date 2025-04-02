@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Input and Output</title>
+</head>
+<body>
+
+    <h1>JavaScript Input and Output Methods</h1>
+
+    <!-- Input through form -->
+    <label for="nameInput">Enter Your Name:</label>
+    <input type="text" id="nameInput">
+    <button onclick="displayInput()">Submit</button>
+
+    <h2>Output:</h2>
+    <p id="output"></p>
+
+    <script>
+        // 1. Taking input using prompt()
+        let userName = prompt("Enter your name:");
+        
+        // 2. Display output using alert()
+        alert("Hello, " + userName + "! Welcome.");
+
+        // 3. Display output using document.write()
+        document.write("<h3>Welcome, " + userName + "!</h3>");
+
+        // 4. Display output using console.log()
+        console.log("User entered: " + userName);
+
+        // 5. Taking input from HTML input field and displaying it
+        function displayInput() {
+            let name = document.getElementById("nameInput").value;
+            document.getElementById("output").innerHTML = "Hello, " + name + "!";
+        }
+    </script>
+
+</body>
+</html>

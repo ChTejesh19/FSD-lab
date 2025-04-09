@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Functions & Events</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #fceabb, #f8b500);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 400px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      width: 80%;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #ff9800;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #e68900;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>JavaScript Functions & Events</h2>
+    <input type="number" id="inputNum" placeholder="Enter a number">
+    <br>
+    <button onclick="calculateFactorial()">Factorial</button>
+    <button onclick="generateFibonacci()">Fibonacci</button>
+    <button onclick="findPrimes()">Prime</button>
+    <button onclick="checkPalindrome()">Palindrome</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateFactorial() {
+      let n = parseInt(document.getElementById('inputNum').value);
+      if (n < 0) return document.getElementById('result').innerHTML = "Factorial not defined for negative numbers.";
+      let fact = 1;
+      for (let i = 1; i <= n; i++) {
+        fact *= i;
+      }
+      document.getElementById('result').innerHTML = `Factorial of ${n} is <strong>${fact}</strong>`;
+    }
+
+    function generateFibonacci() {
+      let n = parseInt(document.getElementById('inputNum').value);
+      let fib = [0, 1];
+      for (let i = 2; i < n; i++) {
+        fib[i] = fib[i - 1] + fib[i - 2];
+      }
+      document.getElementById('result').innerHTML = `Fibonacci series up to ${n}: <strong>${fib.slice(0, n).join(', ')}</strong>`;
+    }
+
+    function findPrimes() {
+      let n = parseInt(document.getElementById('inputNum').value);
+      let primes = [];
+      for (let i = 2; i <= n; i++) {
+        let isPrime = true;
+        for (let j = 2; j <= Math.sqrt(i); j++) {
+          if (i % j === 0) {
+            isPrime = false;
+            break;
+          }
+        }
+        if (isPrime) primes.push(i);
+      }
+      document.getElementById('result').innerHTML = `Prime numbers up to ${n}: <strong>${primes.join(', ')}</strong>`;
+    }
+
+    function checkPalindrome() {
+      let num = document.getElementById('inputNum').value;
+      let reversed = num.split('').reverse().join('');
+      let isPalindrome = (num === reversed);
+      document.getElementById('result').innerHTML = isPalindrome
+        ? `<strong>${num}</strong> is a Palindrome`
+        : `<strong>${num}</strong> is NOT a Palindrome`;
+    }
+  </script>
+</body>
+</html>

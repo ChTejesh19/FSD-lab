@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Form Validation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #83a4d4, #b6fbff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+
+    .success {
+      color: green;
+      font-size: 16px;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #1976D2;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Registration Form</h2>
+    <form onsubmit="return validateForm()">
+      <label for="name">Name:</label>
+      <input type="text" id="name">
+      <div id="nameError" class="error"></div>
+
+      <label for="mobile">Mobile:</label>
+      <input type="text" id="mobile">
+      <div id="mobileError" class="error"></div>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email">
+      <div id="emailError" class="error"></div>
+
+      <button type="submit">Register</button>
+      <div id="successMsg" class="success"></div>
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+      let name = document.getElementById("name").value.trim();
+      let mobile = document.getElementById("mobile").value.trim();
+      let email = document.getElementById("email").value.trim();
+
+      let nameRegex = /^[A-Za-z][A-Za-z0-9]{5,}$/;
+      let mobileRegex = /^[0-9]{10}$/;
+      let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      let valid = true;
+
+      // Clear previous messages
+      document.getElementById("nameError").textContent = "";
+      document.getElementById("mobileError").textContent = "";
+      document.getElementById("emailError").textContent = "";
+      document.getElementById("successMsg").textContent = "";
+
+      if (!nameRegex.test(name)) {
+        document.getElementById("nameError").textContent = "Name must start with a letter, be alphanumeric, and at least 6 characters long.";
+        valid = false;
+      }
+
+      if (!mobileRegex.test(mobile)) {
+        document.getElementById("mobileError").textContent = "Mobile must be exactly 10 digits and only numbers.";
+        valid = false;
+      }
+
+      if (!emailRegex.test(email)) {
+        document.getElementById("emailError").textContent = "Enter a valid email like example@domain.com.";
+        valid = false;
+      }
+
+      if (valid) {
+        document.getElementById("successMsg").textContent = "Registration successful!";
+      }
+
+      return false; // prevent actual form submission for demo
+    }
+  </script>
+
+</body>
+</html>
